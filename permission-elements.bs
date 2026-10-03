@@ -1181,10 +1181,12 @@ interface HTMLGeolocationElement : HTMLElement {
   readonly attribute GeolocationPositionError? error;
   [CEReactions, Reflect] attribute boolean autolocate;
   [CEReactions, Reflect] attribute boolean watch;
-
-  attribute EventHandler onlocation;
 };
 HTMLGeolocationElement includes InPagePermissionMixin;
+
+partial interface mixin GlobalEventHandlers {
+  attribute EventHandler onlocation;
+};
 </pre>
 
 If the user has decided to allow access to geolocation information, the
@@ -1201,11 +1203,11 @@ the user, then the location should be retrieved immediately when the
 not already been granted at insertion time, then this attribute has no effect.
 
 If the [=boolean=] attribute <dfn attribute for=HTMLGeolocationElement>watch</dfn>
-is set to true, the {{HTMLGeolocationElement/onlocation}} event is called
+is set to true, the {{GlobalEventHandlers/onlocation}} event is called
 every time the position changes, matching the behaviour of {{Geolocation/watchPosition}}.
 
 When a location is available, an {{Event}} is [=/dispatched=] on the
-<dfn attribute for=HTMLGeolocationElement>onlocation</dfn> event handler.
+<dfn attribute for=GlobalEventHandlers>onlocation</dfn> event handler.
 When the event is
 dispatched, the location, or information about a failure to retrieve the
 location, are available in the {{HTMLGeolocationElement/position}} or the
@@ -1369,7 +1371,7 @@ To <dfn for=HTMLGeolocationElement>fetch location</dfn>:
 To <dfn>dispatch onlocation</dfn> for |element|:
     1. Let |event| be a new {{Event}}.
     1. [=Event/Initialize=] |event| with {{Event/type}}
-        "{{HTMLGeolocationElement/onlocation}}".
+        "{{GlobalEventHandlers/onlocation}}".
     1. [=/Dispatch=] |event| to |element|.
 
 </div>
