@@ -478,7 +478,6 @@ are:
 
 * {{ActivationBlockersMixin/isValid}}
 * {{ActivationBlockersMixin/invalidReason}}
-* {{GlobalEventHandlers/onvalidationstatuschange}}
 
 ### Internal state ### {#mixin-blocker-internal-state}
 
@@ -846,8 +845,6 @@ The <dfn for=PowerfulFeatureObserver>PowerfulFeatureObserver attributes</dfn> ar
 
 * {{PowerfulFeatureObserver/initialPermissionStatus}}
 * {{PowerfulFeatureObserver/permissionStatus}}
-* {{GlobalEventHandlers/onpromptaction}}
-* {{GlobalEventHandlers/onpromptdismiss}}
 
 ### Internal state ### {#mixin-permissions-internal-state}
 
