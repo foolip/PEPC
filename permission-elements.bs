@@ -128,7 +128,9 @@ interface mixin InPagePermissionMixin {
   readonly attribute InPagePermissionMixinBlockerReason invalidReason;
   readonly attribute PermissionState initialPermissionStatus;
   readonly attribute PermissionState permissionStatus;
+};
 
+partial interface mixin GlobalEventHandlers {
   attribute EventHandler onpromptaction;
   attribute EventHandler onpromptdismiss;
   attribute EventHandler onvalidationstatuschange;
@@ -143,11 +145,11 @@ Elements using this mixin are expected to support the following
   <dd>query whether the element can currently be activated.</dd>
   <dt>{{InPagePermissionMixin/invalidReason}}</dt>
   <dd>return a string representation of why the element currently cannot be activated.</dd>
-  <dt>{{InPagePermissionMixin/onpromptdismiss}}</dt>
+  <dt>{{GlobalEventHandlers/onpromptdismiss}}</dt>
   <dd>notifies when the user has dismissed a permission prompt that resulted from an interaction with the element</dd>
-  <dt>{{InPagePermissionMixin/onpromptaction}}</dt>
+  <dt>{{GlobalEventHandlers/onpromptaction}}</dt>
   <dd>notifies when a permission prompt that resulted from an interaction with the element has been answered by the user (positively or negatively).</dd>
-  <dt>{{InPagePermissionMixin/onvalidationstatuschange}}</dt>
+  <dt>{{GlobalEventHandlers/onvalidationstatuschange}}</dt>
   <dd>notifies when the validation status changes.</dd>
 </dl>
 
@@ -218,7 +220,7 @@ an internal {{[[BlockerList]]}} to keep track of this.
     {{InPagePermissionMixin/invalidReason}}.
     {{[[LastNotifiedValidState]]}} and {{[[LastNotifiedInvalidReason]]}} are
     used to determine whether an
-    {{InPagePermissionMixin/onvalidationstatuschange}} event needs to be
+    {{GlobalEventHandlers/onvalidationstatuschange}} event needs to be
     dispatches.
 
 
@@ -489,7 +491,7 @@ To <dfn for=InPagePermissionMixin>maybe dispatch onvalidstatechange</dfn> for |e
     1. Let |event| be a new {{Event}}.
     1. [=Event/Initialize=] |event| with
         <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-        "{{InPagePermissionMixin/onvalidationstatuschange}}",
+        "{{GlobalEventHandlers/onvalidationstatuschange}}",
         <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
         true, and
         <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -504,7 +506,7 @@ To <dfn for=InPagePermissionMixin>dispatch onpromptaction</dfn> for |element|:
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{InPagePermissionMixin/onpromptaction}}",
+    "{{GlobalEventHandlers/onpromptaction}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -519,7 +521,7 @@ To <dfn for=InPagePermissionMixin>dispatch onpromptdismiss</dfn> for |element|:
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{InPagePermissionMixin/onpromptdismiss}}",
+    "{{GlobalEventHandlers/onpromptdismiss}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -1160,9 +1162,9 @@ The {{InPagePermissionMixin/isValid}} and
 {{InPagePermissionMixin/invalidReason}}, as well as the global
 <a attribute spec=html for=HTMLElement>lang</a> and
 <{htmlsvg-global/tabindex}> content attributes, and the
-{{InPagePermissionMixin/onpromptaction}},
-{{InPagePermissionMixin/onpromptdismiss}}, and
-{{InPagePermissionMixin/onvalidationstatuschange}} event handlers follow the
+{{GlobalEventHandlers/onpromptaction}},
+{{GlobalEventHandlers/onpromptdismiss}}, and
+{{GlobalEventHandlers/onvalidationstatuschange}} event handlers follow the
 description in [[#permission-mixin]].
 
 The <dfn element-attr for=geolocation>autolocate</dfn> attribute determines

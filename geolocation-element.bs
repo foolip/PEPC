@@ -163,9 +163,9 @@ The {{ActivationBlockersMixin/isValid}} and
 {{ActivationBlockersMixin/invalidReason}}, as well as the global
 <a attribute spec=html for=HTMLElement>lang</a> and
 <{htmlsvg-global/tabindex}> content attributes, and the
-{{PowerfulFeatureObserver/onpromptaction}},
-{{PowerfulFeatureObserver/onpromptdismiss}}, and
-{{ActivationBlockersMixin/onvalidationstatuschange}} event handlers follow the
+{{GlobalEventHandlers/onpromptaction}},
+{{GlobalEventHandlers/onpromptdismiss}}, and
+{{GlobalEventHandlers/onvalidationstatuschange}} event handlers follow the
 description in [[#all-the-mixins]].
 
 The <dfn element-attr for=geolocation>autolocate</dfn> attribute determines
@@ -439,6 +439,9 @@ follows:
 interface mixin ActivationBlockersMixin {
   readonly attribute boolean isValid;
   readonly attribute ActivationBlockersMixinBlockerReason invalidReason;
+};
+
+partial interface mixin GlobalEventHandlers {
   attribute EventHandler onvalidationstatuschange;
 };
 </pre>
@@ -451,7 +454,7 @@ following [=content attributes=]:
   <dd>query whether the element can currently be activated.</dd>
   <dt>{{ActivationBlockersMixin/invalidReason}}</dt>
   <dd>return a string representation of why the element currently cannot be activated.</dd>
-  <dt>{{ActivationBlockersMixin/onvalidationstatuschange}}</dt>
+  <dt>{{GlobalEventHandlers/onvalidationstatuschange}}</dt>
   <dd>notifies when the validation status changes.</dd>
 </dl>
 
@@ -475,7 +478,7 @@ are:
 
 * {{ActivationBlockersMixin/isValid}}
 * {{ActivationBlockersMixin/invalidReason}}
-* {{ActivationBlockersMixin/onvalidationstatuschange}}
+* {{GlobalEventHandlers/onvalidationstatuschange}}
 
 ### Internal state ### {#mixin-blocker-internal-state}
 
@@ -497,7 +500,7 @@ are:
     {{ActivationBlockersMixin/invalidReason}}.
     {{ActivationBlockersMixin/[[LastNotifiedValidState]]}} and {{ActivationBlockersMixin/[[LastNotifiedInvalidReason]]}} are
     used to determine whether an
-    {{ActivationBlockersMixin/onvalidationstatuschange}} event needs to be
+    {{GlobalEventHandlers/onvalidationstatuschange}} event needs to be
     dispatches.
 
 * <dfn attribute for="ActivationBlockersMixin">\[[IntersectionObserver]]</dfn>
@@ -735,7 +738,7 @@ To <dfn for=ActivationBlockersMixin>maybe dispatch onvalidstatechange</dfn> for 
     1. Let |event| be a new {{Event}}.
     1. [=Event/Initialize=] |event| with
         <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-        "{{ActivationBlockersMixin/onvalidationstatuschange}}",
+        "{{GlobalEventHandlers/onvalidationstatuschange}}",
         <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
         true, and
         <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -825,6 +828,9 @@ To support elements that gate access to [=powerful features=], you can use the
 interface mixin PowerfulFeatureObserver {
   readonly attribute PermissionState initialPermissionStatus;
   readonly attribute PermissionState permissionStatus;
+};
+
+partial interface mixin GlobalEventHandlers {
   attribute EventHandler onpromptaction;
   attribute EventHandler onpromptdismiss;
 };
@@ -840,8 +846,8 @@ The <dfn for=PowerfulFeatureObserver>PowerfulFeatureObserver attributes</dfn> ar
 
 * {{PowerfulFeatureObserver/initialPermissionStatus}}
 * {{PowerfulFeatureObserver/permissionStatus}}
-* {{PowerfulFeatureObserver/onpromptaction}}
-* {{PowerfulFeatureObserver/onpromptdismiss}}
+* {{GlobalEventHandlers/onpromptaction}}
+* {{GlobalEventHandlers/onpromptdismiss}}
 
 ### Internal state ### {#mixin-permissions-internal-state}
 
@@ -943,7 +949,7 @@ To <dfn for=PowerfulFeatureObserver>dispatch onpromptaction</dfn> for |element|:
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{PowerfulFeatureObserver/onpromptaction}}",
+    "{{GlobalEventHandlers/onpromptaction}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -958,7 +964,7 @@ To <dfn for=PowerfulFeatureObserver>dispatch onpromptdismiss</dfn> for |element|
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{PowerfulFeatureObserver/onpromptdismiss}}",
+    "{{GlobalEventHandlers/onpromptdismiss}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>

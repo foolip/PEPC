@@ -142,9 +142,10 @@
       [HTMLConstructor] constructor();
 
       readonly attribute DOMException? error;
+    };
+
+    partial interface mixin GlobalEventHandlers {
       attribute EventHandler onstream;
-      attribute EventHandler oncancel;
-      attribute EventHandler onerror;
     };
     </pre>
 
@@ -260,7 +261,7 @@
       protections, and exposes their state in
       {{ActivationBlockersMixin/isValid}},
       {{ActivationBlockersMixin/invalidReason}}, and
-      {{ActivationBlockersMixin/onvalidationstatuschange}} attributes.
+      {{GlobalEventHandlers/onvalidationstatuschange}} attributes.
       [[mediacapture-extensions]]
       [[[mediacapture-extensions#dfn-trusted|encourages]]] similar
       "click-jacking" protections, it does specify them in details,

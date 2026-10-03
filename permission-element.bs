@@ -131,9 +131,9 @@ time providing implementations with a better signal of user intent.
   {{PositionOptions/enableHighAccuracy}}.
   <dd>{{HTMLPermissionElement/isValid}} — query whether the element can currently be activated.</dd>
   <dd>{{HTMLPermissionElement/invalidReason}} — Return a string representation of why the element currently cannot be activated.</dd>
-  <dd>{{HTMLPermissionElement/onpromptdismiss}} — notifies when the user has dismissed the permission prompt.</dd>
-  <dd>{{HTMLPermissionElement/onpromptaction}} — notifies when a permission prompt has been answered by the user (positively or negatively).</dd>
-  <dd>{{HTMLPermissionElement/onvalidationstatuschange}} — notifies when the validation status changes.</dd>
+  <dd>{{GlobalEventHandlers/onpromptdismiss}} — notifies when the user has dismissed the permission prompt.</dd>
+  <dd>{{GlobalEventHandlers/onpromptaction}} — notifies when a permission prompt has been answered by the user (positively or negatively).</dd>
+  <dd>{{GlobalEventHandlers/onvalidationstatuschange}} — notifies when the validation status changes.</dd>
  <dt>[=Accessibility considerations=]:</dt>
   <dd></dd>
  <dt>[=DOM interface=]:</dt>
@@ -151,7 +151,9 @@ time providing implementations with a better signal of user intent.
       readonly attribute PermissionState permissionStatus;
 
       static boolean isTypeSupported(DOMString type);
+    };
 
+    partial interface mixin GlobalEventHandlers {
       attribute EventHandler onpromptaction;
       attribute EventHandler onpromptdismiss;
       attribute EventHandler onvalidationstatuschange;
@@ -251,7 +253,7 @@ The <{permission}> element has the following internal slots:
     {{HTMLPermissionElement/invalidReason}}.
     {{[[LastNotifiedValidState]]}} and {{[[LastNotifiedInvalidReason]]}} are
     used to determine whether an
-    {{HTMLPermissionElement/onvalidationstatuschange}} event needs to be
+    {{GlobalEventHandlers/onvalidationstatuschange}} event needs to be
     dispatches.
 
 * <dfn attribute for="HTMLPermissionElement">\[[InitialPermissionStatus]]</dfn>
@@ -762,7 +764,7 @@ To <dfn for=HTMLPermissionElement>maybe dispatch onvalidstatechange</dfn> for |e
     1. Let |event| be a new {{Event}}.
     1. [=Event/Initialize=] |event| with
         <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-        "{{HTMLPermissionElement/onvalidationstatuschange}}",
+        "{{GlobalEventHandlers/onvalidationstatuschange}}",
         <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
         true, and
         <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -777,7 +779,7 @@ To <dfn for=HTMLPermisssionElement>dispatch onpromptaction</dfn> for |element|:
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{HTMLPermissionElement/onpromptaction}}",
+    "{{GlobalEventHandlers/onpromptaction}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
@@ -792,7 +794,7 @@ To <dfn for=HTMLPermisssionElement>dispatch onpromptdismiss</dfn> for |element|:
 1. Let |event| be a new {{Event}}.
 1. [=Event/Initialize=] |event| with
     <a argument for="Event/initEvent(type, bubbles, cancelable)">type</a>
-    "{{HTMLPermissionElement/onpromptdismiss}}",
+    "{{GlobalEventHandlers/onpromptdismiss}}",
     <a argument for="Event/initEvent(type, bubbles, cancelable)">bubbles</a>
     true, and
     <a argument for="Event/initEvent(type, bubbles, cancelable)">cancelable</a>
